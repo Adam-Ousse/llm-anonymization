@@ -17,7 +17,6 @@ data/*/*.gz
 *.png
 *.zip
 model_folder/*
-data/
 vector_db/*
 reddit_predicted/
 plots*/
