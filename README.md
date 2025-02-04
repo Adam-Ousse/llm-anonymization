@@ -21,7 +21,7 @@ Additionally, in case you want to use licensed models from Huggingface log into 
 
 Please note that neither the PersonalReddit dataset nor the Span-Detection model by Dou et al. are open-access. Therefore, both have been removed from this repository. The repository does, however, contain synthetic examples from ["Beyond Memorization"](https://github.com/eth-sri/llmprivacy). Corresponding configuration files can be found under `configs/anonymization/synthetic`.
 
-You can also use this synthetic dataset to evaluate personal attribute inferences capabilities: **[A Synthetic Dataset for Personal Attribute Inference](https://arxiv.org/abs/2406.07217)**. It consists a large-scale fully-synthetic dataset as well as a data generation pipelline. In our corresponding [paper](https://arxiv.org/abs/2406.07217) we show that the dataset is a good proxy for real-world data, allowing all the same conclusions across all experiments, and can be used to evaluate personal attribute inference in a privacy-preserving manner. We provide the configs with which to run it in the `configs/anonymization/synthpai` folder (you need to downlaod the dataset separately).
+You can also use this synthetic dataset to evaluate personal attribute inferences capabilities: [A Synthetic Dataset for Personal Attribute Inference](https://github.com/eth-sri/SynthPAI). It consists a large-scale fully-synthetic dataset as well as a data generation pipelline. In our corresponding [paper](https://arxiv.org/abs/2406.07217) we show that the dataset is a good proxy for real-world data, allowing all the same conclusions across all experiments, and can be used to evaluate personal attribute inference in a privacy-preserving manner. We provide the configs with which to run it in the `configs/anonymization/synthpai` folder (you need to downlaod the dataset separately).
 
 ## Running
 
@@ -35,7 +35,7 @@ In a last step, you will want to get utility scores for (partially) anonymized t
 
 In each step please make sure that you adapt paths within the configs (notably profile_path and outpath) to reflect the current location of files. (Side note: You will find that as a cost-saving measure, we shared the inferences on fully non-anonymized text).
 
-Below we provide an example workflow for a single run:
+Below we provide an example workflow for a single run using the [SynthPAI](https://github.com/eth-sri/SynthPAI) dataset:
 
 ```bash
 # SynthPAI Inference
@@ -64,9 +64,7 @@ In particular, you want to run it as follows:
 
 `python src/anonymized/evaluate_anonymization.py --in_path <your_eval_inference_with_utility>.jsonl --decider "model_human" --out_path <out_directory> --score`
 
-to create a canonical `eval_out.jsonl`
-
-running the same command again without the `--score` will translate this into the csv format used in our plotting script.
+to create a canonical `eval_out.jsonl`. Running the same command again without the `--score` will translate this into the csv format used in our plotting script.
 
 ## Plotting
 
@@ -74,7 +72,7 @@ All our plots have been created with a single call to the `all_plots.sh` script.
 
 ## Citation
 
-If you use this code, please cite our paper:
+If you use this code, please consider citing our work:
 
 ```bibtex
 @inproceedings{
