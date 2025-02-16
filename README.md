@@ -1,6 +1,6 @@
 # Overview
 
-This is the repository accompanying our ICLR 2024 paper ["Large Language Models are Advanced Anonymizers"](https://arxiv.org/abs/2402.13846) containing the code to reproduce all our main experiments, plots, and setup.
+This is the repository accompanying our ICLR 2025 paper ["Large Language Models are Advanced Anonymizers"](https://arxiv.org/abs/2402.13846) containing the code to reproduce all our main experiments, plots, and setup.
 
 ## Setup
 
