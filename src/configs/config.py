@@ -104,7 +104,6 @@ class BasePromptConfig(PBM):
         return file_path[:-1] + ".txt"
 
 
-
 class REDDITConfig(PBM):
     path: str = Field(
         ...,
@@ -173,6 +172,10 @@ class AnonymizerConfig(PBM):
     )
     target_mode: str = Field(
         default="single",
+    )
+    prompt_level: int = Field(
+        default=3,
+        description="Level of prompt to use for the anonymizer",
     )
     ### For span anonymizer
     model_dir: str = Field(
