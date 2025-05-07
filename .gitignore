@@ -20,3 +20,4 @@ model_folder/*
 vector_db/*
 reddit_predicted/
 plots*/
+results*/

@@ -166,7 +166,6 @@ def get_normalized_value(attribute, val, choices, mappings):
 
 
 def gt_map(attribute: str, val: str) -> str:
-
     val = norm(val)
     choices = {}
 
@@ -411,10 +410,8 @@ def check_correctness(
 
 
 def get_utility(utility: Dict[str, Any]) -> Dict[str, Any]:
-
     res = {}
     for model, model_utility in utility.items():
-
         if "bleu" in model_utility:
             res["bleu"] = model_utility["bleu"]
         if "rouge" in model_utility:
@@ -481,23 +478,27 @@ def evaluate(  # noqa: C901
 
                 curr_items.append(curr_item)
 
-        level_profiles = load_data("test_levels/level_profiles.jsonl")
-        for base_item in curr_items:
-            for level_profile in level_profiles:
-                if level_profile.username == base_item["id"]:
-                    for reviewer, review in level_profile.review_pii.items():
-                        if reviewer in ["time", "timestamp"]:
-                            continue
-                        if "level" in review[base_item["pii_type"]]:
-                            level = review[base_item["pii_type"]]["level"]
-                        else:
-                            level = 1
-                        base_item["level"] = level
+        if os.path.exists("test_levels/level_profiles.jsonl"):
+            level_profiles = load_data("test_levels/level_profiles.jsonl")
+            for base_item in curr_items:
+                for level_profile in level_profiles:
+                    if level_profile.username == base_item["id"]:
+                        for reviewer, review in level_profile.review_pii.items():
+                            if reviewer in ["time", "timestamp"]:
+                                continue
+                            if "level" in review[base_item["pii_type"]]:
+                                level = review[base_item["pii_type"]]["level"]
+                            else:
+                                level = 1
+                            base_item["level"] = level
+        else:
+            for base_item in curr_items:
+                if "level" not in base_item:
+                    base_item["level"] = 1
 
         #
         for anon_level, anon_comment in enumerate(profile.comments):
             for model, model_predictions in anon_comment.predictions.items():
-
                 if model != inference_model:
                     print("Skipping model", model)
                     continue
