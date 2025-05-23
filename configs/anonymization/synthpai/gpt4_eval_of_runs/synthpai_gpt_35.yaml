@@ -6,8 +6,8 @@ save_prompts: True
 timeout: 0.0
 task_config: 
     run_eval_inference: True
-    profile_path: "anonymized_results/iclr_synthpai/gpt35_full/inference_comb.jsonl"
-    outpath: "anonymized_results/iclr_synthpai/gpt35_full"
+    profile_path: "anonymized_results/synthpai/gpt35_full/inference_comb.jsonl"
+    outpath: "anonymized_results/synthpai/gpt35_full"
     anonymizer: 
       anon_type: "llm"
       target_mode: "single"

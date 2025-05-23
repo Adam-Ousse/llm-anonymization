@@ -5,8 +5,8 @@ dryrun: False
 save_prompts: True
 timeout: 0.0
 task_config: 
-    profile_path: "anonymized_results/synthpai/azure_full/inference_0.jsonl"
-    outpath: "anonymized_results/iclr_synthpai/azure_full"
+    profile_path: "data/base_inferences/synthpai/inference_0.jsonl"
+    outpath: "anonymized_results/synthpai/azure_full"
     anonymizer: 
       anon_type: "azure"
       target_mode: "single"

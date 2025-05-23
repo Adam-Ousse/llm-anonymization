@@ -13,7 +13,7 @@ bash Mambaforge-$(uname)-$(uname -m).sh
 
 This can be used to install our environment via `mamba env create -f environment.yaml`
 
-Afterward, you should edit the file `credentials.py` to contain your OpenAI and Azure keys, respectively.
+Afterward, you should edit the file `credentials_clean.py` to contain your OpenAI and Azure keys, respectively. Then rename it to `credentials.py` so that it will be loaded ( and is contained in the `.gitignore`).
 
 Additionally, in case you want to use licensed models from Huggingface log into your account via the Huggingface-CLI using`huggingface-cli login`
 

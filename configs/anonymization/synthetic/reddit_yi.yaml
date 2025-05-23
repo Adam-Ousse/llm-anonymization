@@ -6,7 +6,7 @@ save_prompts: True
 timeout: 0.0
 max_workers: 1
 task_config: 
-    profile_path: "anonymized_results/synthetic/azure/inference_0.jsonl"
+    profile_path: "data/base_inferences/synthetic/inference_0.jsonl"
     outpath: "anonymized_results/synthetic/yi_full"
     anonymizer: 
       anon_type: "llm"
