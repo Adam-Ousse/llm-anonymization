@@ -164,8 +164,8 @@ def anonymize(
             len(profile.comments) - 2
         )  # Note these are AnnotatedComments not the actual comments
         if store:
-            with open(f"{cfg.task_config.outpath}/anonymized_{ctr}.jsonl", "a") as f:
-                f.write(json.dumps(profile.to_json()) + "\n")
+            with open(f"{cfg.task_config.outpath}/anonymized_{ctr}.jsonl", "a", encoding="utf-8") as f:
+                f.write(json.dumps(profile.to_json(), ensure_ascii=False) + "\n")
                 f.flush()
 
 
@@ -248,8 +248,8 @@ def score_utility(
 
             ctr = len(op.comments) - 2
             if store:
-                with open(f"{out_dir}/utility_{ctr}.jsonl", "a") as f:
-                    f.write(json.dumps(op.to_json()) + "\n")
+                with open(f"{out_dir}/utility_{ctr}.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(op.to_json(), ensure_ascii=False) + "\n")
                     f.flush()
 
 
@@ -281,7 +281,7 @@ def infer_attributes(
 
         curr_profiles.append(profile)
         curr_prompts += create_prompts(profile, cfg.task_config)
-
+    
     if len(curr_prompts) > 0:
         results = model.predict_multi(
             curr_prompts, max_workers=cfg.max_workers, timeout=40
@@ -300,8 +300,8 @@ def infer_attributes(
 
             if store:
                 ctr = len(op.comments) - 1
-                with open(f"{out_dir}/inference_{ctr}.jsonl", "a") as f:
-                    f.write(json.dumps(op.to_json()) + "\n")
+                with open(f"{out_dir}/inference_{ctr}.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(op.to_json(), ensure_ascii=False) + "\n")
                     f.flush()
 
 
@@ -352,7 +352,7 @@ def load_profiles(cfg: AnonymizationConfig) -> List[Profile]:
             curr_offset = 0
             for curr_file in files:
                 # Load profiles from file
-                with open(curr_file, "r") as f:
+                with open(curr_file, "r", encoding="utf-8") as f:
                     profiles_in_file = []
                     for line in f:
                         profile = Profile.from_json(json.loads(line))
@@ -537,8 +537,8 @@ def run_eval_inference(cfg: Config) -> None:
                     break
 
             if all_present:
-                with open(f"{out_dir}/eval_inference_results.jsonl", "a") as f:
-                    f.write(json.dumps(op.to_json()) + "\n")
+                with open(f"{out_dir}/eval_inference_results.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(op.to_json(), ensure_ascii=False) + "\n")
                     f.flush()
 
 
@@ -620,8 +620,8 @@ def run_utility_scoring(cfg: Config) -> None:
                     break
 
             if all_present:
-                with open(f"{out_dir}/utility_results.jsonl", "a") as f:
-                    f.write(json.dumps(op.to_json()) + "\n")
+                with open(f"{out_dir}/utility_results.jsonl", "a", encoding="utf-8") as f:
+                    f.write(json.dumps(op.to_json(), ensure_ascii=False) + "\n")
                     f.flush()
 
     if True:
@@ -663,6 +663,6 @@ def run_utility_scoring(cfg: Config) -> None:
                     all_present = False
                     break
 
-            with open(f"{out_dir}/utility_results_br.jsonl", "a") as f:
-                f.write(json.dumps(profile.to_json()) + "\n")
+            with open(f"{out_dir}/utility_results_br.jsonl", "a", encoding="utf-8") as f:
+                f.write(json.dumps(profile.to_json(), ensure_ascii=False) + "\n")
                 f.flush()

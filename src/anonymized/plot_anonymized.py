@@ -23,7 +23,9 @@ def color_palette():
 
 
 color_dict_base = {
+    
     "GPT-4-AA": "#1D81A2",
+    "GPT-4.1-AA": "#1A7A9D",
     "GPT-4-Base": "#4BA2C5",
     "GPT-3.5-AA": "#EA985F",
     "GPT-3.5-Base": "#ffbb7f",
@@ -157,6 +159,7 @@ color_dict_base = {
     "Dipper 4": "#e68440",
     "Dipper 5": "#e68440",
     "Claude-3-Opus": "#333333",
+    "gpt1_test": "#1A7A9D",
 }
 color_dict = {}
 for color in color_dict_base.keys():
@@ -213,6 +216,7 @@ order_list_base = [
     "GPT-4-AA-Prompt-1",
     "GPT-4-AA-Prompt-2",
     "GPT-4-AA",
+    "GPT-4.1-AA",
     "GPT-4-AA 1",
     "GPT-4-AA 2",
     "GPT-4-AA 3",
@@ -370,6 +374,7 @@ hue_to_marker_base = {
     "Gemma2-27B-AA": "P",
     "Dipper": "P",
     "Claude-3-Opus": "o",
+    "gpt1_test": "o",
 }
 hue_to_marker = {}
 for marker in hue_to_marker_base.keys():
@@ -398,6 +403,8 @@ def method_to_name(method: str) -> str:
         comb_str = "Presidio"
     elif method == "gpt4_turbo_full":
         comb_str = "GPT-4-AA"
+    elif method == "gpt4.1" or method == "gpt-4.1":
+        comb_str = "GPT-4.1-AA"
     elif method == "gpt35_full":
         comb_str = "GPT-3.5-AA"
     elif method == "yi_full":
@@ -624,6 +631,10 @@ def get_paths(type: str) -> List[str]:
             "anonymized_results/gpt4_turbo_full/inference_ablation_gpt35_full/eval_gpt-3.5-turbo-16k-0613_out.csv",
             "anonymized_results/gpt4_turbo_full/eval_df_out.csv",
             "anonymized_results/azure_full/eval_df_out.csv",
+        ]
+    elif type == "gpt41_test":
+        paths = [
+            "anonymized_results/synthetic/gpt1_test/eval_gpt-4.1_out.csv",
         ]
 
     return paths
